@@ -9,7 +9,13 @@
 <body>
     <div class="calculator-container">
         <div class="calculator">
-            <div id="history-panel" class="history-panel"></div>
+            <div id="history-panel" class="history-panel">
+                <div class="history-header">
+                    <span>History</span>
+                    <button id="clear-history" class="btn small">Clear</button>
+                </div>
+                <div id="history-list" class="history-list"></div>
+            </div>
             <div id="display" class="display">0</div>
             <div class="buttons">
                 <button class="btn memory" id="mc">MC</button>
@@ -20,6 +26,8 @@
                 <button class="btn function" id="pow">xʸ</button>
                 <button class="btn function" id="sin">sin</button>
                 <button class="btn function" id="cos">cos</button>
+                <button class="btn function" id="tan">tan</button>
+                <button class="btn function" id="exp">exp</button>
                 <button class="btn operator" id="clear">C</button>
                 <button class="btn operator" id="backspace">⌫</button>
                 <button class="btn operator" id="divide">÷</button>

@@ -4,13 +4,15 @@
 const display = document.getElementById('display');
 const historyPanel = document.getElementById('history-panel');
 const buttons = document.querySelectorAll('.btn');
+const historyList = document.getElementById('history-list');
+const clearHistoryBtn = document.getElementById('clear-history');
 
 let current = '0';
 let memory = 0;
 let operator = null;
 let operand = null;
 let waitingForOperand = false;
-let history = [];
+let history = JSON.parse(localStorage.getItem('calc_history') || '[]');
 let lastResult = null;
 
 function formatNumber(num) {
@@ -24,8 +26,42 @@ function updateDisplay() {
     display.textContent = formatNumber(current);
 }
 
+function saveHistory() {
+    localStorage.setItem('calc_history', JSON.stringify(history));
+}
+
+function renderHistory() {
+    if (!historyList) return;
+    historyList.innerHTML = '';
+    // show latest first
+    history.slice().reverse().forEach(h => {
+        const div = document.createElement('div');
+        div.className = 'history-item';
+        div.textContent = h;
+        div.title = 'Click to reuse result';
+        div.addEventListener('click', () => {
+            const parts = h.split('=');
+            const val = parts[parts.length - 1].trim().replace(/,/g, '');
+            if (!isNaN(val)) {
+                current = val.toString();
+                updateDisplay();
+            }
+        });
+        historyList.appendChild(div);
+    });
+}
+
 function updateHistoryPanel() {
-    historyPanel.innerHTML = history.slice(-3).map(h => `<div>${h}</div>`).join('');
+    renderHistory();
+    saveHistory();
+}
+
+if (clearHistoryBtn) {
+    clearHistoryBtn.addEventListener('click', () => {
+        history = [];
+        saveHistory();
+        renderHistory();
+    });
 }
 
 function clearAll() {
@@ -109,6 +145,8 @@ function handleFunction(fn) {
             result = Math.sqrt(num); break;
         case 'sin': result = Math.sin(num * Math.PI / 180); break;
         case 'cos': result = Math.cos(num * Math.PI / 180); break;
+        case 'tan': result = Math.tan(num * Math.PI / 180); break;
+        case 'exp': result = Math.exp(num); break;
         default: return;
     }
     history.push(`${fn}(${formatNumber(num)}) = ${formatNumber(result)}`);
