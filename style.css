@@ -1,0 +1,137 @@
+/* Advanced JS Calculator Styles */
+body {
+    background: #222;
+    color: #fff;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.calculator-container {
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.calculator {
+    background: #2d2d2d;
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+    width: 340px;
+    max-width: 95vw;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.display {
+    background: #181818;
+    border-radius: 8px;
+    min-height: 56px;
+    font-size: 2.2rem;
+    text-align: right;
+    padding: 0.7rem 1rem;
+    margin-bottom: 0.5rem;
+    overflow-x: auto;
+    transition: background 0.2s;
+}
+.history-panel {
+    background: #232323;
+    border-radius: 8px;
+    min-height: 32px;
+    max-height: 60px;
+    font-size: 1rem;
+    text-align: right;
+    padding: 0.3rem 1rem;
+    margin-bottom: 0.2rem;
+    color: #aaa;
+    overflow-x: auto;
+    overflow-y: auto;
+    transition: background 0.2s;
+}
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.7rem;
+}
+.btn {
+    background: #393939;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.3rem;
+    color: #fff;
+    padding: 0.8rem 0;
+    cursor: pointer;
+    transition: background 0.15s, box-shadow 0.15s;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    outline: none;
+    user-select: none;
+}
+.btn:hover, .btn:focus {
+    background: #505050;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+}
+.btn:active {
+    background: #1e90ff;
+    color: #fff;
+}
+.btn.operator {
+    background: #ff9800;
+    color: #fff;
+}
+.btn.operator:hover, .btn.operator:focus {
+    background: #ffa733;
+}
+.btn.operator:active {
+    background: #ffb84d;
+    color: #222;
+}
+.btn.equal {
+    background: #1e90ff;
+    color: #fff;
+    grid-row: span 2;
+}
+.btn.equal:hover, .btn.equal:focus {
+    background: #339dff;
+}
+.btn.equal:active {
+    background: #5bbcff;
+    color: #222;
+}
+.btn.memory, .btn.function {
+    background: #444;
+    color: #b3e5fc;
+}
+.btn.memory:hover, .btn.function:hover, .btn.memory:focus, .btn.function:focus {
+    background: #555;
+    color: #fff;
+}
+.btn.memory:active, .btn.function:active {
+    background: #1e90ff;
+    color: #fff;
+}
+.btn.zero {
+    grid-column: span 2;
+}
+@media (max-width: 500px) {
+    .calculator {
+        width: 98vw;
+        padding: 1rem 0.3rem 1rem 0.3rem;
+    }
+    .display {
+        font-size: 1.3rem;
+        padding: 0.5rem 0.5rem;
+    }
+    .history-panel {
+        font-size: 0.8rem;
+        padding: 0.2rem 0.5rem;
+    }
+    .btn {
+        font-size: 1rem;
+        padding: 0.6rem 0;
+    }
+}
